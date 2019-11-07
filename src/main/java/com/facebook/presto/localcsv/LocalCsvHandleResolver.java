@@ -13,7 +13,9 @@
  */
 package com.facebook.presto.localcsv;
 
-//import com.facebook.presto.spi.*;
+import com.facebook.presto.spi.ConnectorTableHandle;
+import com.facebook.presto.spi.ColumnHandle;
+import com.facebook.presto.spi.ConnectorSplit;
 import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
 
 public class LocalCsvHandleResolver
