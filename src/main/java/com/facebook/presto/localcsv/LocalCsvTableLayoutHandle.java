@@ -17,7 +17,8 @@ import com.facebook.presto.spi.ConnectorTableLayoutHandle;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LocalCsvTableLayoutHandle implements ConnectorTableLayoutHandle
+public class LocalCsvTableLayoutHandle
+        implements ConnectorTableLayoutHandle
 {
     private final LocalCsvTableHandle handle;
 

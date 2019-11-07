@@ -26,7 +26,8 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LocalCsvMetadata implements ConnectorMetadata
+public class LocalCsvMetadata
+        implements ConnectorMetadata
 {
 
 

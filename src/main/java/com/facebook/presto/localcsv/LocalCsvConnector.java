@@ -19,7 +19,8 @@ import com.google.inject.Inject;
 
 import static com.facebook.presto.localcsv.LocalCsvTransactionHandle.INSTANCE;
 
-public class LocalCsvConnector implements Connector
+public class LocalCsvConnector
+        implements Connector
 {
 
     private LocalCsvMetadata metadata;

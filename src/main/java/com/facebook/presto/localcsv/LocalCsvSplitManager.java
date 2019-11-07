@@ -22,7 +22,8 @@ import com.google.inject.Inject;
 import java.nio.file.Path;
 
 
-public class LocalCsvSplitManager implements ConnectorSplitManager
+public class LocalCsvSplitManager
+        implements ConnectorSplitManager
 {
 
     private NodeManager nodeManager;

@@ -16,7 +16,8 @@ package com.facebook.presto.localcsv;
 import com.facebook.presto.spi.*;
 import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
 
-public class LocalCsvHandleResolver implements ConnectorHandleResolver
+public class LocalCsvHandleResolver
+        implements ConnectorHandleResolver
 {
     @Override
     public Class<? extends ConnectorTableHandle> getTableHandleClass()

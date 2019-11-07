@@ -24,7 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class LocalCsvRecordCursor implements RecordCursor
+public class LocalCsvRecordCursor
+        implements RecordCursor
 {
 
     private final File csvFile;

@@ -20,7 +20,8 @@ import com.facebook.presto.spi.type.Type;
 import java.io.File;
 import java.util.List;
 
-public class LocalCsvRecordSet implements RecordSet
+public class LocalCsvRecordSet
+        implements RecordSet
 {
 
     private File csvFile;

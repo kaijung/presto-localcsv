@@ -18,7 +18,8 @@ import com.facebook.presto.spi.type.Type;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LocalCsvColumnHandle implements ColumnHandle
+public class LocalCsvColumnHandle
+        implements ColumnHandle
 {
 
     private String columnName;

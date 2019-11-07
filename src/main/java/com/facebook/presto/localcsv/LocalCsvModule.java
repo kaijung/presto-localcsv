@@ -18,7 +18,8 @@ import com.google.inject.Module;
 import com.google.inject.Scopes;
 import io.airlift.configuration.ConfigBinder;
 
-public class LocalCsvModule implements Module
+public class LocalCsvModule
+        implements Module
 {
     @Override
     public void configure(Binder binder)

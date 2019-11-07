@@ -22,7 +22,8 @@ import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.util.List;
 
-public class LocalCsvSplit implements ConnectorSplit
+public class LocalCsvSplit
+        implements ConnectorSplit
 {
 
     private final HostAddress address;

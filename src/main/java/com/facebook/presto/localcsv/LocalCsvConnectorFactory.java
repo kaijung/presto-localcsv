@@ -26,7 +26,8 @@ import java.util.Map;
 import static com.google.common.base.Throwables.throwIfUnchecked;
 import static java.util.Objects.requireNonNull;
 
-public class LocalCsvConnectorFactory implements ConnectorFactory
+public class LocalCsvConnectorFactory
+        implements ConnectorFactory
 {
 
     @Override

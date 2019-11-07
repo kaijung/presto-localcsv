@@ -18,7 +18,8 @@ import com.facebook.presto.spi.SchemaTableName;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LocalCsvTableHandle implements ConnectorTableHandle
+public class LocalCsvTableHandle
+        implements ConnectorTableHandle
 {
     private final String schemaName;
     private final String tableName;
