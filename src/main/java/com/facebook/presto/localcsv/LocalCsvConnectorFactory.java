@@ -26,20 +26,24 @@ import java.util.Map;
 import static com.google.common.base.Throwables.throwIfUnchecked;
 import static java.util.Objects.requireNonNull;
 
-public class LocalCsvConnectorFactory implements ConnectorFactory {
+public class LocalCsvConnectorFactory implements ConnectorFactory
+{
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return "localcsv";
     }
 
     @Override
-    public ConnectorHandleResolver getHandleResolver() {
+    public ConnectorHandleResolver getHandleResolver()
+    {
         return new LocalCsvHandleResolver();
     }
 
     @Override
-    public Connector create(String connectorId, Map<String, String> config, ConnectorContext context) {
+    public Connector create(String connectorId, Map<String, String> config, ConnectorContext context)
+    {
         requireNonNull(config, "requiredConfig is null");
         try {
             // A plugin is not required to use Guice; it is just very convenient

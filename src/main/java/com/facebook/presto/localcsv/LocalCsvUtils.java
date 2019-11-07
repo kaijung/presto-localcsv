@@ -28,20 +28,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LocalCsvUtils {
+public class LocalCsvUtils
+{
 
     private LocalCsvConfig config;
 
     @Inject
-    public LocalCsvUtils(LocalCsvConfig config) {
+    public LocalCsvUtils(LocalCsvConfig config)
+    {
         this.config = config;
     }
 
-    public static List<Type> tableColumnTypes(Path csvPath) {
+    public static List<Type> tableColumnTypes(Path csvPath)
+    {
         return tableColumns(csvPath).stream().map(t -> VarcharType.VARCHAR).collect(Collectors.toList());
     }
 
-    public static List<String> tableColumns(Path csvPath) {
+    public static List<String> tableColumns(Path csvPath)
+    {
         try (BufferedReader reader = Files.newBufferedReader(csvPath)) {
             String header = reader.readLine();
             ImmutableList.Builder<ColumnMetadata> builder = ImmutableList.builder();
@@ -51,7 +55,8 @@ public class LocalCsvUtils {
         }
     }
 
-    public List<String> tableColumns(SchemaTableName table) {
+    public List<String> tableColumns(SchemaTableName table)
+    {
         Path csvPath = config.getCsvDir().toPath().
                 resolve(table.getSchemaName()).
                 resolve(table.getTableName() + ".csv");

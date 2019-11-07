@@ -19,7 +19,8 @@ import com.google.inject.Inject;
 
 import static com.facebook.presto.localcsv.LocalCsvTransactionHandle.INSTANCE;
 
-public class LocalCsvConnector implements Connector {
+public class LocalCsvConnector implements Connector
+{
 
     private LocalCsvMetadata metadata;
     private LocalCsvSplitManager splitManager;
@@ -27,29 +28,34 @@ public class LocalCsvConnector implements Connector {
 
 
     @Inject
-    public LocalCsvConnector(LocalCsvMetadata metadata, LocalCsvSplitManager splitManager, LocalCsvRecordSetProvider recordSetProvider) {
+    public LocalCsvConnector(LocalCsvMetadata metadata, LocalCsvSplitManager splitManager, LocalCsvRecordSetProvider recordSetProvider)
+    {
         this.metadata = metadata;
         this.splitManager = splitManager;
         this.recordSetProvider = recordSetProvider;
     }
 
     @Override
-    public ConnectorTransactionHandle beginTransaction(IsolationLevel isolationLevel, boolean readOnly) {
+    public ConnectorTransactionHandle beginTransaction(IsolationLevel isolationLevel, boolean readOnly)
+    {
         return INSTANCE;
     }
 
     @Override
-    public ConnectorMetadata getMetadata(ConnectorTransactionHandle transactionHandle) {
+    public ConnectorMetadata getMetadata(ConnectorTransactionHandle transactionHandle)
+    {
         return metadata;
     }
 
     @Override
-    public ConnectorRecordSetProvider getRecordSetProvider() {
+    public ConnectorRecordSetProvider getRecordSetProvider()
+    {
         return recordSetProvider;
     }
 
     @Override
-    public ConnectorSplitManager getSplitManager() {
+    public ConnectorSplitManager getSplitManager()
+    {
         return splitManager;
     }
 }

@@ -22,21 +22,24 @@ import com.google.inject.Inject;
 import java.nio.file.Path;
 
 
-public class LocalCsvSplitManager implements ConnectorSplitManager {
+public class LocalCsvSplitManager implements ConnectorSplitManager
+{
 
     private NodeManager nodeManager;
 
     private LocalCsvConfig config;
 
     @Inject
-    public LocalCsvSplitManager(NodeManager nodeManager, LocalCsvConfig config) {
+    public LocalCsvSplitManager(NodeManager nodeManager, LocalCsvConfig config)
+    {
         this.nodeManager = nodeManager;
         this.config = config;
     }
 
 
     @Override
-    public ConnectorSplitSource getSplits(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorTableLayoutHandle layout, SplitSchedulingStrategy splitSchedulingStrategy) {
+    public ConnectorSplitSource getSplits(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorTableLayoutHandle layout, SplitSchedulingStrategy splitSchedulingStrategy)
+    {
         LocalCsvTableHandle tableHandle = ((LocalCsvTableLayoutHandle) layout).getHandle();
         Path csvPath = config.getCsvDir().toPath().resolve(tableHandle.getSchemaName())
                 .resolve(tableHandle.getTableName() + ".csv");

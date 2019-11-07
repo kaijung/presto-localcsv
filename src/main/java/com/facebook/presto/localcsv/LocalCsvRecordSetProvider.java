@@ -22,9 +22,11 @@ import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
 
 import java.util.List;
 
-public class LocalCsvRecordSetProvider implements ConnectorRecordSetProvider {
+public class LocalCsvRecordSetProvider implements ConnectorRecordSetProvider
+{
     @Override
-    public RecordSet getRecordSet(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorSplit split, List<? extends ColumnHandle> columns) {
+    public RecordSet getRecordSet(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorSplit split, List<? extends ColumnHandle> columns)
+    {
         LocalCsvSplit csvSplit = (LocalCsvSplit) split;
         return new LocalCsvRecordSet(csvSplit.getCsvPath());
     }

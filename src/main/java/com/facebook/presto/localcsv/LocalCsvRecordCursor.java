@@ -24,7 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class LocalCsvRecordCursor implements RecordCursor {
+public class LocalCsvRecordCursor implements RecordCursor
+{
 
     private final File csvFile;
 
@@ -33,27 +34,32 @@ public class LocalCsvRecordCursor implements RecordCursor {
 
     private BufferedReader reader = null;
 
-    public LocalCsvRecordCursor(File csvFile) {
+    public LocalCsvRecordCursor(File csvFile)
+    {
         this.csvFile = csvFile;
     }
 
     @Override
-    public long getCompletedBytes() {
+    public long getCompletedBytes()
+    {
         return 0;
     }
 
     @Override
-    public long getReadTimeNanos() {
+    public long getReadTimeNanos()
+    {
         return 0;
     }
 
     @Override
-    public Type getType(int field) {
+    public Type getType(int field)
+    {
         return VarcharType.VARCHAR;
     }
 
     @Override
-    public boolean advanceNextPosition() {
+    public boolean advanceNextPosition()
+    {
         if (reader == null) {
             try {
                 reader = Files.newBufferedReader(csvFile.toPath());
@@ -74,37 +80,44 @@ public class LocalCsvRecordCursor implements RecordCursor {
     }
 
     @Override
-    public boolean getBoolean(int field) {
+    public boolean getBoolean(int field)
+    {
         return false;
     }
 
     @Override
-    public long getLong(int field) {
+    public long getLong(int field)
+    {
         return 0;
     }
 
     @Override
-    public double getDouble(int field) {
+    public double getDouble(int field)
+    {
         return 0;
     }
 
     @Override
-    public Slice getSlice(int field) {
+    public Slice getSlice(int field)
+    {
         return Slices.utf8Slice(fields[field]);
     }
 
     @Override
-    public Object getObject(int field) {
+    public Object getObject(int field)
+    {
         return null;
     }
 
     @Override
-    public boolean isNull(int field) {
+    public boolean isNull(int field)
+    {
         return false;
     }
 
     @Override
-    public void close() {
+    public void close()
+    {
         if (reader != null) {
             try {
                 reader.close();

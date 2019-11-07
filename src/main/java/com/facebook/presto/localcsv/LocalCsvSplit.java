@@ -22,7 +22,8 @@ import com.google.common.collect.ImmutableList;
 import java.io.File;
 import java.util.List;
 
-public class LocalCsvSplit implements ConnectorSplit {
+public class LocalCsvSplit implements ConnectorSplit
+{
 
     private final HostAddress address;
     private File csvPath;
@@ -31,28 +32,33 @@ public class LocalCsvSplit implements ConnectorSplit {
     @JsonCreator
     public LocalCsvSplit(
             @JsonProperty("csvPath") File csvPath,
-            @JsonProperty("address") HostAddress address) {
+            @JsonProperty("address") HostAddress address)
+    {
         this.csvPath = csvPath;
         this.address = address;
     }
 
     @Override
-    public boolean isRemotelyAccessible() {
+    public boolean isRemotelyAccessible()
+    {
         return true;
     }
 
     @Override
-    public List<HostAddress> getAddresses() {
+    public List<HostAddress> getAddresses()
+    {
         return ImmutableList.of(address);
     }
 
     @Override
-    public Object getInfo() {
+    public Object getInfo()
+    {
         return this;
     }
 
     @JsonProperty
-    public File getCsvPath() {
+    public File getCsvPath()
+    {
         return csvPath;
     }
 }

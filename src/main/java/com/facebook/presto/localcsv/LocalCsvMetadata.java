@@ -26,20 +26,23 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LocalCsvMetadata implements ConnectorMetadata {
+public class LocalCsvMetadata implements ConnectorMetadata
+{
 
 
     private LocalCsvConfig config;
     private LocalCsvUtils utils;
 
     @Inject
-    public LocalCsvMetadata(LocalCsvConfig config, LocalCsvUtils utils) {
+    public LocalCsvMetadata(LocalCsvConfig config, LocalCsvUtils utils)
+    {
         this.config = config;
         this.utils = utils;
     }
 
     @Override
-    public List<String> listSchemaNames(ConnectorSession session) {
+    public List<String> listSchemaNames(ConnectorSession session)
+    {
         try {
             return Files.list(config.getCsvDir().toPath()).filter(Files::isDirectory).
                     map(p -> p.getFileName().toString()).collect(Collectors.toList());
@@ -49,7 +52,8 @@ public class LocalCsvMetadata implements ConnectorMetadata {
     }
 
     @Override
-    public ConnectorTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName) {
+    public ConnectorTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName)
+    {
         Path tablePath = config.getCsvDir().toPath().resolve(tableName.getSchemaName());
         if (!Files.exists(tablePath) || !Files.isDirectory(tablePath)) {
             return null;
@@ -62,19 +66,22 @@ public class LocalCsvMetadata implements ConnectorMetadata {
     }
 
     @Override
-    public List<ConnectorTableLayoutResult> getTableLayouts(ConnectorSession session, ConnectorTableHandle table, Constraint<ColumnHandle> constraint, Optional<Set<ColumnHandle>> desiredColumns) {
+    public List<ConnectorTableLayoutResult> getTableLayouts(ConnectorSession session, ConnectorTableHandle table, Constraint<ColumnHandle> constraint, Optional<Set<ColumnHandle>> desiredColumns)
+    {
         LocalCsvTableHandle tableHandle = (LocalCsvTableHandle) table;
         ConnectorTableLayout layout = new ConnectorTableLayout(new LocalCsvTableLayoutHandle(tableHandle));
         return ImmutableList.of(new ConnectorTableLayoutResult(layout, constraint.getSummary()));
     }
 
     @Override
-    public ConnectorTableLayout getTableLayout(ConnectorSession session, ConnectorTableLayoutHandle handle) {
+    public ConnectorTableLayout getTableLayout(ConnectorSession session, ConnectorTableLayoutHandle handle)
+    {
         return new ConnectorTableLayout(handle);
     }
 
     @Override
-    public ConnectorTableMetadata getTableMetadata(ConnectorSession session, ConnectorTableHandle table) {
+    public ConnectorTableMetadata getTableMetadata(ConnectorSession session, ConnectorTableHandle table)
+    {
         LocalCsvTableHandle handle = (LocalCsvTableHandle) table;
         List<String> columns = utils.tableColumns(handle.getSchemaTableName());
         List<ColumnMetadata> metadata = columns.stream().map(c -> new ColumnMetadata(c, VarcharType.VARCHAR)).collect(Collectors.toList());
@@ -82,7 +89,8 @@ public class LocalCsvMetadata implements ConnectorMetadata {
     }
 
     @Override
-    public List<SchemaTableName> listTables(ConnectorSession session, Optional<String> schemaName) {
+    public List<SchemaTableName> listTables(ConnectorSession session, Optional<String> schemaName)
+    {
         ImmutableList.Builder<String> schemaListBuilder = ImmutableList.builder();
         ImmutableList.Builder<SchemaTableName> tableNamesBuilder = ImmutableList.builder();
         if (schemaName.isPresent()) {
@@ -98,7 +106,8 @@ public class LocalCsvMetadata implements ConnectorMetadata {
     }
 
     @Override
-    public Map<String, ColumnHandle> getColumnHandles(ConnectorSession session, ConnectorTableHandle tableHandle) {
+    public Map<String, ColumnHandle> getColumnHandles(ConnectorSession session, ConnectorTableHandle tableHandle)
+    {
         ImmutableMap.Builder<String, ColumnHandle> builder = ImmutableMap.builder();
         LocalCsvTableHandle handle = (LocalCsvTableHandle) tableHandle;
         List<String> columns = utils.tableColumns(handle.getSchemaTableName());
@@ -111,13 +120,15 @@ public class LocalCsvMetadata implements ConnectorMetadata {
     }
 
     @Override
-    public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle) {
+    public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle)
+    {
         LocalCsvColumnHandle handle = (LocalCsvColumnHandle) columnHandle;
         return new ColumnMetadata(handle.getColumnName(), handle.getColumnType());
     }
 
     @Override
-    public Map<SchemaTableName, List<ColumnMetadata>> listTableColumns(ConnectorSession session, SchemaTablePrefix prefix) {
+    public Map<SchemaTableName, List<ColumnMetadata>> listTableColumns(ConnectorSession session, SchemaTablePrefix prefix)
+    {
         List<SchemaTableName> list = new ArrayList<>();
         if (prefix.getTableName() != null) {
             list.add(new SchemaTableName(prefix.getSchemaName(), prefix.getTableName()));
@@ -133,7 +144,8 @@ public class LocalCsvMetadata implements ConnectorMetadata {
         return builder.build();
     }
 
-    private List<SchemaTableName> listTables(String schemaName) {
+    private List<SchemaTableName> listTables(String schemaName)
+    {
         try {
             return Files.list(config.getCsvDir().toPath().resolve(schemaName))
                     .map(p -> p.getFileName().toString().replaceAll("\\.csv$", ""))
