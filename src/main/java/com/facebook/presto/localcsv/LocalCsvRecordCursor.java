@@ -65,7 +65,8 @@ public class LocalCsvRecordCursor
             try {
                 reader = Files.newBufferedReader(csvFile.toPath());
                 reader.readLine();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 throw new RuntimeException();
             }
         }
@@ -122,7 +123,8 @@ public class LocalCsvRecordCursor
         if (reader != null) {
             try {
                 reader.close();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 //
             }
         }

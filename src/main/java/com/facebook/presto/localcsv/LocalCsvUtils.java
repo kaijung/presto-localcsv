@@ -49,7 +49,8 @@ public class LocalCsvUtils
             String header = reader.readLine();
             ImmutableList.Builder<ColumnMetadata> builder = ImmutableList.builder();
             return Arrays.stream(header.split("\\s*,\\s*")).collect(Collectors.toList());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

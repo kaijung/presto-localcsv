@@ -48,7 +48,8 @@ public class LocalCsvMetadata
     {
         try {
             return Files.list(config.getCsvDir().toPath()).filter(Files::isDirectory).map(p -> p.getFileName().toString()).collect(Collectors.toList());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -97,7 +98,8 @@ public class LocalCsvMetadata
         ImmutableList.Builder<SchemaTableName> tableNamesBuilder = ImmutableList.builder();
         if (schemaName.isPresent()) {
             schemaListBuilder.add(schemaName.get());
-        } else {
+        }
+        else {
             schemaListBuilder.addAll(listSchemaNames(session));
         }
         ImmutableList<String> schemas = schemaListBuilder.build();
@@ -134,7 +136,8 @@ public class LocalCsvMetadata
         List<SchemaTableName> list = new ArrayList<>();
         if (prefix.getTableName() != null) {
             list.add(new SchemaTableName(prefix.getSchemaName(), prefix.getTableName()));
-        } else {
+        }
+        else {
             list.addAll(listTables(prefix.getSchemaName()));
         }
         ImmutableMap.Builder<SchemaTableName, List<ColumnMetadata>> builder = ImmutableMap.builder();
