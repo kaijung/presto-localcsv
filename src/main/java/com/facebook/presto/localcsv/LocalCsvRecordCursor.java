@@ -32,10 +32,11 @@ public class LocalCsvRecordCursor
     private String curLine;
     private String[] fields;
 
-    private BufferedReader reader = null;
+    private BufferedReader reader;
 
     public LocalCsvRecordCursor(File csvFile)
     {
+        reader = null;
         this.csvFile = csvFile;
     }
 
