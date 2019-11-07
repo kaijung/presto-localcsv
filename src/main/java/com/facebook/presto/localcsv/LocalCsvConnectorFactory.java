@@ -58,7 +58,8 @@ public class LocalCsvConnectorFactory
                     .initialize();
 
             return injector.getInstance(LocalCsvConnector.class);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throwIfUnchecked(e);
             throw new RuntimeException(e);
         }

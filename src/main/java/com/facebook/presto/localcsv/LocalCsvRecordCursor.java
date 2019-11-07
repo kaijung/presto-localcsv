@@ -75,7 +75,8 @@ public class LocalCsvRecordCursor
             if (curLine != null) {
                 fields = curLine.split("\\s*,\\s*");
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
         return curLine != null;
