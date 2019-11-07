@@ -18,9 +18,7 @@ import com.facebook.presto.spi.connector.ConnectorSplitManager;
 import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
-
 import java.nio.file.Path;
-
 
 public class LocalCsvSplitManager
         implements ConnectorSplitManager
@@ -35,7 +33,7 @@ public class LocalCsvSplitManager
         this.nodeManager = nodeManager;
         this.config = config;
     }
-    
+
     @Override
     public ConnectorSplitSource getSplits(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorTableLayoutHandle layout, SplitSchedulingStrategy splitSchedulingStrategy)
     {
