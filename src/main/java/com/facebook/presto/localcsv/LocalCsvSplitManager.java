@@ -35,8 +35,7 @@ public class LocalCsvSplitManager
         this.nodeManager = nodeManager;
         this.config = config;
     }
-
-
+    
     @Override
     public ConnectorSplitSource getSplits(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorTableLayoutHandle layout, SplitSchedulingStrategy splitSchedulingStrategy)
     {

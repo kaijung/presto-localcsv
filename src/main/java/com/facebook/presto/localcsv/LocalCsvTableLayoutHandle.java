@@ -25,7 +25,6 @@ public class LocalCsvTableLayoutHandle
     @JsonCreator
     public LocalCsvTableLayoutHandle(@JsonProperty("handle") LocalCsvTableHandle handle)
     {
-
         this.handle = handle;
     }
 

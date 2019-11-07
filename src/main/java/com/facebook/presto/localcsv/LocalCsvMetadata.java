@@ -149,10 +149,9 @@ public class LocalCsvMetadata
     {
         try {
             return Files.list(config.getCsvDir().toPath().resolve(schemaName)).map(p -> p.getFileName().toString().replaceAll("\\.csv$", "")).map(tableName -> new SchemaTableName(schemaName, tableName)).collect(Collectors.toList());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
-
 }

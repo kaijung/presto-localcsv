@@ -123,7 +123,8 @@ public class LocalCsvRecordCursor
         if (reader != null) {
             try {
                 reader.close();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 //
             }
         }
