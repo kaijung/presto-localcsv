@@ -13,7 +13,7 @@
  */
 package com.facebook.presto.localcsv;
 
-import com.facebook.presto.spi.*;
+//import com.facebook.presto.spi.*;
 import com.facebook.presto.spi.connector.ConnectorMetadata;
 import com.facebook.presto.spi.type.VarcharType;
 import com.google.common.collect.ImmutableList;
@@ -23,14 +23,12 @@ import com.google.inject.Inject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+//import java.util.*;
 import java.util.stream.Collectors;
 
 public class LocalCsvMetadata
         implements ConnectorMetadata
 {
-
-
     private LocalCsvConfig config;
     private LocalCsvUtils utils;
 
@@ -45,9 +43,9 @@ public class LocalCsvMetadata
     public List<String> listSchemaNames(ConnectorSession session)
     {
         try {
-            return Files.list(config.getCsvDir().toPath()).filter(Files::isDirectory).
-                    map(p -> p.getFileName().toString()).collect(Collectors.toList());
-        } catch (IOException e) {
+            return Files.list(config.getCsvDir().toPath()).filter(Files::isDirectory).map(p -> p.getFileName().toString()).collect(Collectors.toList());
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -96,7 +94,8 @@ public class LocalCsvMetadata
         ImmutableList.Builder<SchemaTableName> tableNamesBuilder = ImmutableList.builder();
         if (schemaName.isPresent()) {
             schemaListBuilder.add(schemaName.get());
-        } else {
+        }
+        else {
             schemaListBuilder.addAll(listSchemaNames(session));
         }
         ImmutableList<String> schemas = schemaListBuilder.build();
@@ -133,7 +132,8 @@ public class LocalCsvMetadata
         List<SchemaTableName> list = new ArrayList<>();
         if (prefix.getTableName() != null) {
             list.add(new SchemaTableName(prefix.getSchemaName(), prefix.getTableName()));
-        } else {
+        }
+        else {
             list.addAll(listTables(prefix.getSchemaName()));
         }
         ImmutableMap.Builder<SchemaTableName, List<ColumnMetadata>> builder = ImmutableMap.builder();
@@ -148,9 +148,7 @@ public class LocalCsvMetadata
     private List<SchemaTableName> listTables(String schemaName)
     {
         try {
-            return Files.list(config.getCsvDir().toPath().resolve(schemaName))
-                    .map(p -> p.getFileName().toString().replaceAll("\\.csv$", ""))
-                    .map(tableName -> new SchemaTableName(schemaName, tableName)).collect(Collectors.toList());
+            return Files.list(config.getCsvDir().toPath().resolve(schemaName)).map(p -> p.getFileName().toString().replaceAll("\\.csv$", "")).map(tableName -> new SchemaTableName(schemaName, tableName)).collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

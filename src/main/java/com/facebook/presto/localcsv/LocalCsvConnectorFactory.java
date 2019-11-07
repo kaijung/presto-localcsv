@@ -29,7 +29,6 @@ import static java.util.Objects.requireNonNull;
 public class LocalCsvConnectorFactory
         implements ConnectorFactory
 {
-
     @Override
     public String getName()
     {
@@ -59,7 +58,8 @@ public class LocalCsvConnectorFactory
                     .initialize();
 
             return injector.getInstance(LocalCsvConnector.class);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throwIfUnchecked(e);
             throw new RuntimeException(e);
         }

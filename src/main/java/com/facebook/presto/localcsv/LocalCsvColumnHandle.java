@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class LocalCsvColumnHandle
         implements ColumnHandle
 {
-
     private String columnName;
     private Type columnType;
     private int idx;

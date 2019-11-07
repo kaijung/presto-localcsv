@@ -30,7 +30,6 @@ import java.util.stream.Collectors;
 
 public class LocalCsvUtils
 {
-
     private LocalCsvConfig config;
 
     @Inject
@@ -50,17 +49,15 @@ public class LocalCsvUtils
             String header = reader.readLine();
             ImmutableList.Builder<ColumnMetadata> builder = ImmutableList.builder();
             return Arrays.stream(header.split("\\s*,\\s*")).collect(Collectors.toList());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public List<String> tableColumns(SchemaTableName table)
     {
-        Path csvPath = config.getCsvDir().toPath().
-                resolve(table.getSchemaName()).
-                resolve(table.getTableName() + ".csv");
+        Path csvPath = config.getCsvDir().toPath().resolve(table.getSchemaName()).resolve(table.getTableName() + ".csv");
         return tableColumns(csvPath);
     }
-
 }

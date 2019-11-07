@@ -22,11 +22,9 @@ import static com.facebook.presto.localcsv.LocalCsvTransactionHandle.INSTANCE;
 public class LocalCsvConnector
         implements Connector
 {
-
     private LocalCsvMetadata metadata;
     private LocalCsvSplitManager splitManager;
     private LocalCsvRecordSetProvider recordSetProvider;
-
 
     @Inject
     public LocalCsvConnector(LocalCsvMetadata metadata, LocalCsvSplitManager splitManager, LocalCsvRecordSetProvider recordSetProvider)

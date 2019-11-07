@@ -23,7 +23,6 @@ import java.util.List;
 public class LocalCsvRecordSet
         implements RecordSet
 {
-
     private File csvFile;
 
     public LocalCsvRecordSet(File csvFile)
@@ -42,5 +41,4 @@ public class LocalCsvRecordSet
     {
         return new LocalCsvRecordCursor(csvFile);
     }
-
 }

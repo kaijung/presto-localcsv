@@ -25,10 +25,8 @@ import java.util.List;
 public class LocalCsvSplit
         implements ConnectorSplit
 {
-
     private final HostAddress address;
     private File csvPath;
-
 
     @JsonCreator
     public LocalCsvSplit(
