@@ -41,8 +41,14 @@ public class LocalCsvSplitManager
         this.config = config;
     }
 
+    //@Override
+    //public ConnectorSplitSource getSplits(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorTableLayoutHandle layout, SplitSchedulingStrategy splitSchedulingStrategy)
     @Override
-    public ConnectorSplitSource getSplits(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorTableLayoutHandle layout, SplitSchedulingStrategy splitSchedulingStrategy)
+    public ConnectorSplitSource getSplits(
+            ConnectorTransactionHandle transactionHandle,
+            ConnectorSession session,
+            ConnectorTableLayoutHandle layout,
+            SplitSchedulingContext splitSchedulingContext)
     {
         LocalCsvTableHandle tableHandle = ((LocalCsvTableLayoutHandle) layout).getHandle();
         Path csvPath = config.getCsvDir().toPath().resolve(tableHandle.getSchemaName()).resolve(tableHandle.getTableName() + ".csv");
