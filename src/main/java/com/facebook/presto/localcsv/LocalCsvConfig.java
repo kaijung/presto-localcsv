@@ -13,10 +13,13 @@
  */
 package com.facebook.presto.localcsv;
 
-import com.sun.istack.internal.NotNull;
-import io.airlift.configuration.Config;
+import com.facebook.airlift.configuration.Config;
+
+import javax.validation.constraints.NotNull;
 
 import java.io.File;
+//import com.sun.istack.internal.NotNull;
+//import io.airlift.configuration.Config;
 
 public class LocalCsvConfig
 {
