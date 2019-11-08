@@ -32,10 +32,12 @@
             <groupId>com.facebook.airlift</groupId>
             <artifactId>configuration</artifactId>
         </dependency>
+<!--
         <dependency>
             <groupId>io.airlift</groupId>
             <artifactId>configuration</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>io.airlift</groupId>
             <artifactId>units</artifactId>
