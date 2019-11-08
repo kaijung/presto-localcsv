@@ -13,11 +13,11 @@
  */
 package com.facebook.presto.localcsv;
 
+import com.facebook.airlift.configuration.ConfigBinder;
 import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
 //import io.airlift.configuration.ConfigBinder;
-import static com.facebook.airlift.configuration.ConfigBinder;
 
 public class LocalCsvModule
         implements Module
