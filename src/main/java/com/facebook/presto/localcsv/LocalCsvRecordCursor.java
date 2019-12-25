@@ -23,6 +23,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LocalCsvRecordCursor
         implements RecordCursor
@@ -33,9 +36,15 @@ public class LocalCsvRecordCursor
     private String[] fields;
 
     private BufferedReader reader;
+    private FileHandler fileHandler;
+    private static Logger logger = Logger.getLogger(LocalCsvRecordCursor.class.getName());
 
     public LocalCsvRecordCursor(File csvFile)
     {
+        fileHandler = new FileHandler("test.log");
+        fileHandler.setLevel(Level.INFO);
+        logger.addHandler(fileHandler);
+
         reader = null;
         this.csvFile = csvFile;
     }
@@ -121,6 +130,8 @@ public class LocalCsvRecordCursor
     @Override
     public void close()
     {
+        logger.info("LocalCsvRecordCursor::close()");
+
         if (reader != null) {
             try {
                 reader.close();
