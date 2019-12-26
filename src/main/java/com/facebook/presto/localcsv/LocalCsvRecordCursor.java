@@ -41,6 +41,7 @@ public class LocalCsvRecordCursor
 
     public LocalCsvRecordCursor(File csvFile)
     {
+        logger.info("LocalCsvRecordCursor::LocalCsvRecordCursor()");
         try {
             fileHandler = new FileHandler("test.log");
         }
@@ -75,6 +76,7 @@ public class LocalCsvRecordCursor
     @Override
     public boolean advanceNextPosition()
     {
+        logger.info("LocalCsvRecordCursor::advanceNextPosition()");
         if (reader == null) {
             try {
                 reader = Files.newBufferedReader(csvFile.toPath());
