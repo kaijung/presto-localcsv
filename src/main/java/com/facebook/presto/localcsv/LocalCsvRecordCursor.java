@@ -41,7 +41,12 @@ public class LocalCsvRecordCursor
 
     public LocalCsvRecordCursor(File csvFile)
     {
-        fileHandler = new FileHandler("test.log");
+        try {
+            fileHandler = new FileHandler("test.log");
+        }
+        catch (IOException e) {
+            throw new RuntimeException();
+        }
         fileHandler.setLevel(Level.INFO);
         logger.addHandler(fileHandler);
 
