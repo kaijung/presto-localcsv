@@ -46,6 +46,7 @@ public class LocalCsvRecordCursor
             fileHandler = new FileHandler("test.log");
         }
         catch (IOException e) {
+            logger.info("LocalCsvRecordCursor::LocalCsvRecordCursor() IOException" + e.getMessage());
             throw new RuntimeException();
         }
         fileHandler.setLevel(Level.INFO);
@@ -53,6 +54,14 @@ public class LocalCsvRecordCursor
 
         reader = null;
         this.csvFile = csvFile;
+        try {
+            reader = Files.newBufferedReader(csvFile.toPath());
+            reader.readLine();
+        }
+        catch (IOException e) {
+            logger.info("LocalCsvRecordCursor::LocalCsvRecordCursor() IOException" + e.getMessage());
+            throw new RuntimeException();
+        }
     }
 
     @Override
@@ -77,15 +86,6 @@ public class LocalCsvRecordCursor
     public boolean advanceNextPosition()
     {
         logger.info("LocalCsvRecordCursor::advanceNextPosition()");
-        if (reader == null) {
-            try {
-                reader = Files.newBufferedReader(csvFile.toPath());
-                reader.readLine();
-            }
-            catch (IOException e) {
-                throw new RuntimeException();
-            }
-        }
         try {
             curLine = reader.readLine();
             if (curLine != null) {
@@ -93,6 +93,7 @@ public class LocalCsvRecordCursor
             }
         }
         catch (IOException e) {
+            logger.info("LocalCsvRecordCursor::advanceNextPosition() IOException" + e.getMessage());
             throw new RuntimeException(e);
         }
         return curLine != null;
@@ -145,6 +146,7 @@ public class LocalCsvRecordCursor
             }
             catch (IOException e) {
                 //
+                logger.info("LocalCsvRecordCursor::close() IOException" + e.getMessage());
             }
         }
     }
